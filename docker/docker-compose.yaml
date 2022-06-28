@@ -15,7 +15,7 @@ services:
   app-cat:
     build: ./app
     ports:
-      - "8040:8040"
+      - "8040:8041"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/pets
       - SPRING_DATASOURCE_USERNAME=root
