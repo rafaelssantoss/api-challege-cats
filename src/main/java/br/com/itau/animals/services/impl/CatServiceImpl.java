@@ -94,10 +94,10 @@ public class CatServiceImpl implements CatService {
         log.info("Starting request GET to temperament {} cats", value);
 
         if (size != null && page != null) {
-            var cats = repository.findByTemperament(temperamentFilter(value), PageRequest.of(page, size));
+            var cats = repository.findByTemperament(valueFilter(value), PageRequest.of(page, size));
             return getResponse(cats, null);
         } else {
-            var cats = repository.findByTemperament(temperamentFilter(value));
+            var cats = repository.findByTemperament(valueFilter(value));
             return getResponse(null, cats);
         }
     }
@@ -107,10 +107,10 @@ public class CatServiceImpl implements CatService {
         log.info("Starting request GET to origin {} cats", value);
 
         if (size != null && page != null) {
-            var cats = repository.findByOrigin(temperamentFilter(value), PageRequest.of(page, size));
+            var cats = repository.findByOrigin(valueFilter(value), PageRequest.of(page, size));
             return getResponse(cats, null);
         } else {
-            var cats = repository.findByOrigin(temperamentFilter(value));
+            var cats = repository.findByOrigin(valueFilter(value));
             return getResponse(null, cats);
         }
     }
@@ -138,27 +138,30 @@ public class CatServiceImpl implements CatService {
                     .map(cat -> CatTranslate.translate(cat))
                     .collect(Collectors.toList());
 
+            log.info("Request successfully executed");
             return BaseResponse.<List<CatResponse>>builder()
                     .data(response)
                     .build();
         }
     }
 
-    private String temperamentFilter(String value) {
+    private String valueFilter(String value) {
         log.info("Filtering value string");
 
         if (!value.matches("^[A-Za-z ]+$"))
             throw new CatException.BadRequest("Invalid temper");
 
-        var array = value.split("\\s+");
-        Arrays.stream(array).forEach(text -> text.substring(0, 1).toUpperCase().concat(text.substring(1).toLowerCase()));
+        var split = value.split("\\s+");
+        var array = Arrays.stream(split)
+                .map(text -> text = text.substring(0, 1).toUpperCase().concat(text.substring(1).toLowerCase()))
+                .collect(Collectors.toList());
 
         String result = "";
         for (String text : array) {
-            result = result +
-                    text + " ";
+            result = result + text + " ";
         }
         result = result.substring(0, result.length() -1);
+        log.info("Value filter to '{}'", result);
         return result;
     }
 

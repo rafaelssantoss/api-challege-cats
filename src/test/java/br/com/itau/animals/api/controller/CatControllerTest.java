@@ -1,6 +1,5 @@
-package br.com.itau.animals.controller;
+package br.com.itau.animals.api.controller;
 
-import br.com.itau.animals.api.controller.CatController;
 import br.com.itau.animals.domain.BaseResponse;
 import br.com.itau.animals.domain.response.CatResponse;
 import br.com.itau.animals.services.CatService;
@@ -55,7 +54,46 @@ public class CatControllerTest {
         assertTrue(response.getBody().getData().get(0).getOrigin().equals("Egypt"));
     }
 
+    @Test
+    @DisplayName("Test controller to get id cat")
     public void testGetId() {
+        when(service.getIdCatService(anyString())).thenReturn(BaseResponse.<CatResponse>builder()
+                .data(DtoTest.getCatResponse())
+                .build());
 
+        var response = controller.getId("adsa");
+
+        assertNotNull(response);
+        assertFalse(response.getBody().getData().getId().equals("teste"));
+    }
+
+    @Test
+    @DisplayName("Test controller to get cats by temperament")
+    public void testTemperament() {
+        when(service.getTemperamentCatService(anyInt(), anyInt(), anyString())).thenReturn(BaseResponse.<List<CatResponse>>builder()
+                .data(Arrays.asList(DtoTest.getCatResponse()))
+                .pagination(DtoTest.getPageResponse())
+                .build());
+
+        var response = controller.getTemperamentCat(10, 0, "Gentle");
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertTrue(response.getBody().getData().get(0).getTemperament().contains("Gentle"));
+    }
+
+    @Test
+    @DisplayName("Test controller to get cats by origin")
+    public void testOrigin() {
+        when(service.getOriginCatService(anyInt(), anyInt(), anyString())).thenReturn(BaseResponse.<List<CatResponse>>builder()
+                .data(Arrays.asList(DtoTest.getCatResponse()))
+                .pagination(DtoTest.getPageResponse())
+                .build());
+
+        var response = controller.getOriginCat(10, 0, "Egypt");
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertTrue(response.getBody().getData().get(0).getOrigin().equals("Egypt"));
     }
 }
