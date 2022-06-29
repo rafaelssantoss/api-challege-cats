@@ -1,0 +1,29 @@
+version: "3.1"
+
+services:
+
+  db_2:
+    image: postgres
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=pets
+
+  app-cat_2:
+    build: ./app
+    ports:
+      - "8039:8041"
+    depends_on:
+      - db_2
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db_2:5433/pets
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=123456
+      - API_CAT_KEY=9cf02f27-61da-4597-bfc1-c702fc87692c
+
+networks:
+  backend:
+    driver: bridge

@@ -1,5 +1,83 @@
 # API busca de raças de gatos
 
+## Arquitetura
+
+O projeto foi desenvolvido em DDD (Domain-Driven Design), com a seguinte organização de pacotes:
+
+````
+api
+    |____________ pacote de entrypoint do microservice, controllers e exception controllers
+    
+configuration
+    |____________ pacote de configuração do projeto
+    
+domain
+    |____________ pacote de dominios de entrada e saída do microservice
+    
+exception
+    |____________ pacote de execeções
+    
+repostory
+    |____________ pacote de conexão com a base de dados e suas entidades
+    
+services
+    |____________ pacote de serviço onde está as regras de negócio
+````
+
+Na pasta `contrib` está a collection Postman do projeto, enquanto os Dockerfile e docker-compose na pasta `docker`.
+
+O microservice usa como banco de dados `Postgres` e para criação de schema/tabelas é usado a migration `Flyway`,
+sempre será executado ao executar o serviço.
+
+## 🔧 Instalando local
+
+Para executar o projeto localmente, é necessário que a máquina tenha o `make`, caso ao contrário precisará 
+olhar o arquivo `Makefile` na raíz do projeto e executar os comandos na sequencia.
+
+### Execução do serviço mais o Splunk:
+* Executar
+````
+make up
+````
+* Parar
+````
+make stop
+````
+* Limpar base e containers
+````
+make clean
+````
+
+
+### Execução apenas da API e banco de dados:
+**OBS:** Recomendado principalmente se o computador não tem um processador muito bom e pouca quantidade de RAM, já que a imagem do Splunk pesa bastante.
+* Executar
+````
+make up-simple
+````
+* Parar
+````
+make stop-simple
+````
+* Limpar base e containers
+````
+make clean-simple
+````
+
+Caso precise executar o serviço em alguma IDEA, opte por fazer a execução simplificada do `make` para o banco de dados ficar disponível,
+dessa forma a aplicação pode ser executada na IDEA sem problemas.
+
+
+Serviço **ON**, é necessário efetuar uma carga na base com as informações das raças de gatos, para isso basta executar
+um endpoint de carga que está na collection, `PUT - Update database`.
+
+## Splunk
+Caso consiga executar o projeto com todas as imagens, o splunk pode ser acessado atráves do [link](http://localhost:8000).
+Segue usuário e senha:
+````
+USERNAME=admin
+PASSWORD=Splunk@123456
+````
 
 ## Testes Unitários
 Os testes unitários foi desenvolvido em `JUnit`, e será executado sempre no build.
