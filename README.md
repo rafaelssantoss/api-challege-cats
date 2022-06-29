@@ -1,6 +1,6 @@
 # API busca de raças de gatos
 
-## Arquitetura
+## 🛠️ Arquitetura
 
 O projeto foi desenvolvido em DDD (Domain-Driven Design), com a seguinte organização de pacotes:
 
@@ -71,7 +71,7 @@ dessa forma a aplicação pode ser executada na IDEA sem problemas.
 Serviço **ON**, é necessário efetuar uma carga na base com as informações das raças de gatos, para isso basta executar
 um endpoint de carga que está na collection, `PUT - Update database`.
 
-## Splunk
+## 🔩 Splunk
 Caso consiga executar o projeto com todas as imagens, o splunk pode ser acessado atráves do [link](http://localhost:8000).
 Segue usuário e senha:
 ````
@@ -79,7 +79,7 @@ USERNAME=admin
 PASSWORD=Splunk@123456
 ````
 
-## Testes Unitários
+## ⌨ Testes Unitários
 Os testes unitários foi desenvolvido em `JUnit`, e será executado sempre no build.
 O projeto contém o plugin do `Jacoco`, com isso é possível visualizar o report de cobertura de testes através de um arquivo HTML.
 
