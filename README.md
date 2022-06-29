@@ -34,7 +34,7 @@ sempre será executado ao executar o serviço.
 Para executar o projeto localmente, é necessário que a máquina tenha o `make`, caso ao contrário precisará 
 olhar o arquivo `Makefile` na raíz do projeto e executar os comandos na sequencia.
 
-### Execução do serviço mais o Splunk:
+### Execução dos serviços:
 * Executar
 ````
 make up
@@ -46,22 +46,6 @@ make stop
 * Limpar base e containers
 ````
 make clean
-````
-
-
-### Execução apenas da API e banco de dados:
-**OBS:** Recomendado principalmente se o computador não tem um processador muito bom e pouca quantidade de RAM, já que a imagem do Splunk pesa bastante.
-* Executar
-````
-make up-simple
-````
-* Parar
-````
-make stop-simple
-````
-* Limpar base e containers
-````
-make clean-simple
 ````
 
 Caso precise executar o serviço em alguma IDEA, opte por fazer a execução simplificada do `make` para o banco de dados ficar disponível,

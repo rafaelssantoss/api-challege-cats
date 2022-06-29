@@ -24,6 +24,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=123456
       - API_CAT_KEY=9cf02f27-61da-4597-bfc1-c702fc87692c
+      - LOGGING_FILE=/logs/cat-application.log
     volumes:
       - log_volume:/logs
 
