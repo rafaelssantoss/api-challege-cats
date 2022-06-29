@@ -1,4 +1,3 @@
-
 up:
 	mvn clean install
 	docker-compose -f docker/docker-compose.yaml build

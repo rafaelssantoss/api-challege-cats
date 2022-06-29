@@ -11,7 +11,7 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="br.com.itau.animals" level="DEBUG" additivity="false">
+        <Logger name="br.com.project.animals" level="DEBUG" additivity="false">
             <AppenderRef ref="Console" />
         </Logger>
 

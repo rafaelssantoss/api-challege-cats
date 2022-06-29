@@ -20,8 +20,19 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/pets
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=123456
+      - API_CAT_KEY=9cf02f27-61da-4597-bfc1-c702fc87692c
+
+  splunk:
+    image: splunk/splunk
+    restart: always
+    hostname: splunk
+    ports:
+      - "8000:8000"
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_USERNAME=admin
+      - SPLUNK_PASSWORD=Splunk@123456
 
 networks:
   backend:
-    name: challege-cats
     driver: bridge
