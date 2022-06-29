@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "e50cb586-3eda-443f-91ed-d418783f8352",
+		"name": "challege-cats",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "health",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8040/actuator/health",
+							"host": [
+								"localhost"
+							],
+							"port": "8040",
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Liveness",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8040/actuator/health/liveness",
+							"host": [
+								"localhost"
+							],
+							"port": "8040",
+							"path": [
+								"actuator",
+								"health",
+								"liveness"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Readiness",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8040/actuator/health/readiness",
+							"host": [
+								"localhost"
+							],
+							"port": "8040",
+							"path": [
+								"actuator",
+								"health",
+								"readiness"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update database",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8040/v1/cats",
+					"host": [
+						"localhost"
+					],
+					"port": "8040",
+					"path": [
+						"v1",
+						"cats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Breeds",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8040/v1/cats?page=0&size=10",
+					"host": [
+						"localhost"
+					],
+					"port": "8040",
+					"path": [
+						"v1",
+						"cats"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Breeds id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8040/v1/cats/abys",
+					"host": [
+						"localhost"
+					],
+					"port": "8040",
+					"path": [
+						"v1",
+						"cats",
+						"abys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Temperament",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8040/v1/cats/temperament?page=0&size=10&value=Intelligent",
+					"host": [
+						"localhost"
+					],
+					"port": "8040",
+					"path": [
+						"v1",
+						"cats",
+						"temperament"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "value",
+							"value": "Intelligent"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Origin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8040/v1/cats/origin?page=0&size=10&value=Canada",
+					"host": [
+						"localhost"
+					],
+					"port": "8040",
+					"path": [
+						"v1",
+						"cats",
+						"origin"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "value",
+							"value": "Canada"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

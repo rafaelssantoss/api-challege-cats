@@ -15,13 +15,47 @@ services:
   app-cat:
     build: ./app
     ports:
-      - "8040:8040"
+      - "8040:8041"
+    depends_on:
+      - db
+      - splunk
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/pets
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=123456
+      - API_CAT_KEY=9cf02f27-61da-4597-bfc1-c702fc87692c
+    volumes:
+      - log_volume:/logs
+
+  splunk:
+    image: splunk/splunk
+    restart: always
+    hostname: splunk
+    ports:
+      - "8000:8000"
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_USERNAME=admin
+      - SPLUNK_PASSWORD=Splunk@123456
+
+  splunkforwarder:
+    image: splunk/universalforwarder
+    hostname: splunkforwarder
+    environment:
+      - SPLUNK_START_ARGS=--accept-license --answer-yes
+      - SPLUNK_FORWARD_SERVER=splunk:9997
+      - SPLUNK_USERNAME=admin
+      - SPLUNK_PASSWORD=Splunk@123456
+      - SPLUNK_ADD=monitor /logs
+    restart: always
+    depends_on:
+      - splunk
+    volumes:
+      - log_volume:/logs
+
+volumes:
+  log_volume:
 
 networks:
   backend:
-    name: challege-cats
     driver: bridge
