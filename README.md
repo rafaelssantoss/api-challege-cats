@@ -1,5 +1,9 @@
 # API busca de raças de gatos
 
+## Introdução
+
+API para buscar informações de raças de gatos, com integração [Cat as a Service](https://thecatapi.com/).
+
 ## 🛠️ Arquitetura
 
 O projeto foi desenvolvido em DDD (Domain-Driven Design), com a seguinte organização de pacotes:
@@ -24,12 +28,18 @@ services
     |____________ pacote de serviço onde está as regras de negócio
 ````
 
-Na pasta `contrib` está a collection Postman do projeto, enquanto os Dockerfile e docker-compose na pasta `docker`.
+Na pasta `contrib` está a collection Postman do projeto, enquanto os Dockerfile e docker-compose estão na pasta `docker`.
 
 O microservice usa como banco de dados `Postgres` e para criação de schema/tabelas é usado a migration `Flyway`,
 sempre será executado ao executar o serviço.
 
 ## 🔧 Instalando local
+
+Antes de tudo, é necessário que a máquina tenha instalado:
+* Docker
+* Make
+* Java 11 ou superior
+* Maven
 
 Para executar o projeto localmente, é necessário que a máquina tenha o `make`, caso ao contrário precisará 
 olhar o arquivo `Makefile` na raíz do projeto e executar os comandos na sequencia.
