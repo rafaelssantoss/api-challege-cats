@@ -1,8 +1,6 @@
 # API busca de raças de gatos
 
-## Introdução
-
-API para buscar informações de raças de gatos, com integração [Cat as a Service](https://thecatapi.com/).
+### Buscar informações de raças de gatos, com integração [Cat as a Service](https://thecatapi.com/).
 
 ## 🛠️ Arquitetura
 
